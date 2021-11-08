@@ -9,7 +9,7 @@
             title: userItemInput.value
         })
 
-        fetch('/todos', {
+        fetch('/addNewTodo', {
             method: 'POST',
             body: itemToSend,
             headers: {
@@ -25,19 +25,21 @@
     })
 
     // Click event listener for deleting a todo item
-    // todoList.addEventListener('click', (event) => {
-    //     let todoId = event.target.id
+    todoList.addEventListener('click', (event) => {
+        let todoId = event.target.parentElement.id
 
-    //     if (event.target.matches('.delete-item-btn')) {
-    //         fetch(`/todos/${todoId}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-type': 'application/json; charset=UTF-8'
-    //             }
-    //         })
-    //         .then((res) => res.json())
-    //     }
-    // })
+        if (event.target.matches('.delete-item-btn')) {
+            console.log(todoId)
+            fetch(`/deleteTodo/${todoId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            })
+            .then((res) => res.json())
+            .then(() => location.reload())
+        }
+    })
 
     // Fetches and displays todos
     fetch('/todos')
@@ -51,7 +53,7 @@
     const displayTodos = function (todo) {
         // Creates li container for each todo item
         const itemDiv = document.createElement('li')
-        itemDiv.setAttribute('id', 'itemDivId')
+        itemDiv.setAttribute('id', `${todo.id}`)
         itemDiv.classList.add('item-div')
 
         // Creates input for checkmark and appends to item-div

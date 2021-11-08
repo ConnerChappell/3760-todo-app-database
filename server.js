@@ -29,7 +29,7 @@ app.get('/todos', (req, res) => {
 })
 
 // POST
-app.post('/todos', (req, res) => {
+app.post('/addNewTodo', (req, res) => {
     let newItem = {
         id: todos.length + 1,
         title: req.body.title,
@@ -41,11 +41,11 @@ app.post('/todos', (req, res) => {
 })
 
 // DELETE
-// app.delete('/todos/:todoId', (req, res) => {
-//     const { todoId } = req.params
-//     const index = todos.findIndex((obj) => obj.id === todoId)
-//     todos.splice(index, 1)
-// })
+app.delete('/deleteTodo/:todoId', (req, res) => {
+    const { todoId } = req.params
+    todos.splice(todoId - 1, 1)
+    res.send(todos)
+})
 
 
 app.listen(PORT, () => {
