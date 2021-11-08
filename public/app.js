@@ -53,7 +53,7 @@
     const displayTodos = function (todo) {
         // Creates li container for each todo item
         const itemDiv = document.createElement('li')
-        itemDiv.setAttribute('id', `${todo.id}`)
+        itemDiv.setAttribute('id', `${todo._id}`)
         itemDiv.classList.add('item-div')
 
         // Creates input for checkmark and appends to item-div

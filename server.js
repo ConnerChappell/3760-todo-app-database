@@ -47,7 +47,7 @@ app.post('/addNewTodo', async (req, res) => {
     let todos = await Todo.find()
 
     const newItem = new Todo({
-        id: todos.length + 1,
+        id: req.body._id,
         title: req.body.title,
         complete: false
     })
@@ -56,7 +56,6 @@ app.post('/addNewTodo', async (req, res) => {
     .then(async () => {
         todos = await Todo.find()
         console.log(todos)
-        console.log(newItem.title)
         res.json(todos)
     })
 
@@ -64,9 +63,15 @@ app.post('/addNewTodo', async (req, res) => {
     // res.json(newItem)
 })
 
+// PUT
+// work in progress...
+
 // DELETE
-app.delete('/deleteTodo/:todoId', (req, res) => {
-    const { todoId } = req.params
-    todos.splice(todoId - 1, 1)
-    res.send(todos)
+app.delete('/deleteTodo/:todoId', async (req, res) => {
+    const todoId = req.body._id
+    let todo = await Todo.findOneAndDelete({ id: todoId })
+    .then(async () => {
+        let todos = await Todo.find()
+        res.json(todos)
+    })
 })
