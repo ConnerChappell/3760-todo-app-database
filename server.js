@@ -68,8 +68,8 @@ app.post('/addNewTodo', async (req, res) => {
 
 // DELETE
 app.delete('/deleteTodo/:todoId', async (req, res) => {
-    const todoId = req.body._id
-    let todo = await Todo.findOneAndDelete({ id: todoId })
+    console.log(req.params.todoId)
+    let todo = await Todo.findByIdAndDelete({ _id: req.params.todoId })
     .then(async () => {
         let todos = await Todo.find()
         res.json(todos)

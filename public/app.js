@@ -29,7 +29,7 @@
         let todoId = event.target.parentElement.id
 
         if (event.target.matches('.delete-item-btn')) {
-            console.log(todoId)
+            // console.log(todoId)
             fetch(`/deleteTodo/${todoId}`, {
                 method: 'DELETE',
                 headers: {
