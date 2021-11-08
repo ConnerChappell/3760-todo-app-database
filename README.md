@@ -2,13 +2,13 @@
 
 ### GET
 
-## /todos
+#### /todos
 
 Returns all todo items
 
 ### POST
 
-## /addNewTodo
+#### /addNewTodo
 
 Adds a new todo item. Works in mongo. Kind of works on the front end – for me the todo item title was showing up as undefined at first but once you refresh it shows what you inputted (I don't know why this was happening) 
 
@@ -18,6 +18,6 @@ Adds a new todo item. Works in mongo. Kind of works on the front end – for me 
 
 ### DELETE
 
-## /deleteTodo/:todoId
+#### /deleteTodo/:todoId
 
 Deletes a todo from the list by finding the id
